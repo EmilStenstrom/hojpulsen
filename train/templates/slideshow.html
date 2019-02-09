@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block page_class %}page-slideshow{% endblock page_class %}
+{% block main %}
+    <div class="timer">
+        <span id="minutes">{{ start_minutes }}m</span>
+        <span id="seconds">{{ start_seconds }}s</span>
+        <span id="pace">{{ pace_per_second.0 }}%</span>
+    </div>
+    <div class="slideshow">
+        <img id="image" src="{{ paths.0 }}">
+    </div>
+    <div class="thanks" style="display: none;">
+        <p>Well done, you just invested in your health!</p>
+        <p><a href="/" class="button is-large">AGAIN!</a></p>
+    </div>
+
+    <script>
+        window.onload = function(){
+            var minutesLabel = document.getElementById("minutes");
+            var secondsLabel = document.getElementById("seconds");
+            var paceLabel = document.getElementById("pace");
+            var imageContainer = document.getElementById("image");
+
+            var excercise_seconds = {{ seconds }};
+            var totalSeconds = {{ seconds }};
+            var pace_per_second = {{ pace_per_second|safe }};
+            var paths = {{ paths|safe }};
+
+            function pad(val) {
+                var valString = val + "";
+                if (valString.length < 2) {
+                    return "0" + valString;
+                } else {
+                    return valString;
+                }
+            }
+            function setTime() {
+                --totalSeconds;
+                secondsLabel.innerHTML = pad(totalSeconds % 60) + "m";
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60)) + "s";
+                paceLabel.innerHTML = pace_per_second[excercise_seconds - totalSeconds] + "%";
+                imageContainer.src = paths[excercise_seconds - totalSeconds];
+
+                if (totalSeconds == 0) {
+                    clearInterval(timer);
+
+                    var slideshow_element = document.getElementsByClassName("slideshow")[0];
+                    slideshow_element.remove();
+                    var timer_element = document.getElementsByClassName("timer")[0];
+                    timer_element.remove();
+                    var thanks_element = document.getElementsByClassName("thanks")[0];
+                    thanks_element.style.display = "block";
+                }
+            }
+
+            var timer = setInterval(setTime, 1000);
+        }
+    </script>
+{% endblock main %}

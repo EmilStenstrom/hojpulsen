@@ -1,4 +1,86 @@
 {% extends "base.html" %}
+{% load train_tags %}
+{% block page_class %}page-startpage{% endblock page_class %}
 {% block main %}
-	HÖJ PULSEN!
+    <section class="section">
+        <div class="container">
+
+            <h1 class="title">HÖJ PULSEN!</h1>
+            <p>Health professionals agree, to live longer you NEED to do <strong>pulse raising activities every day</strong>! HÖJ PULSEN is an app that helps you do this. We guarantee less sweat than that spinning or bikram yoga class...</p>
+
+            <br>
+            <h2 class="subtitle">Time to build your perfect training program!</h2>
+
+            <form method="get" class="form-seconds">
+                <label for="seconds" class="label">Length of exercise</label>
+                <div class="field has-addons">
+                    <div class="control">
+                        <div class="select">
+                            <select name="seconds">
+                                <option value="30" {% if seconds == 30 %}selected{% endif %}>30 sec</option>
+                                <option value="60" {% if seconds == 60 %}selected{% endif %}>1 min</option>
+                                <option value="300" {% if seconds == 300 %}selected{% endif %}>5 min</option>
+                                <option value="600" {% if seconds == 600 %}selected{% endif %}>10 min</option>
+                                <option value="1800" {% if seconds == 1800 %}selected{% endif %}>30 min</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="control">
+                        <button type="submit" class="button is-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+
+            {% if seconds %}
+                <br>
+                <label class="label">Your pulse</label>
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="field">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Pulse</th>
+                                    {% for i in timesteps %}
+                                        {% widthratio i num_timesteps seconds as timestep %}
+                                        <th>{{ timestep|format_seconds }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for j in blocks reversed %}
+                                    <tr>
+                                        <th>{% widthratio j num_blocks 100 %}%</th>
+                                        {% for i in timesteps %}
+                                            <td>
+                                                <input type="radio" class="radio"
+                                                    name="block{{ i }}"
+                                                    value="{% widthratio j num_blocks 100 %}%"
+                                                    {% if forloop.parentloop.last %}checked{% endif %}
+                                                >
+                                            </td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                                <tr>
+                                    <th>0%</th>
+                                    {% for i in timesteps %}
+                                        <td>
+                                            <input type="radio" disabled>
+                                        </td>
+                                    {% endfor %}
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <br>
+                    <label class="label">START EXCERCISING: Which do you dislike the most?</label>
+                    {% for name, data in images.items %}
+                        <input type="image" name="{{ name }}" src="{{ data.src }}" width="100" height="100">
+                    {% endfor %}
+                </form>
+            {% endif %}
+        </div>
+    </section>
 {% endblock main %}
