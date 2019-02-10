@@ -5,6 +5,10 @@ html, body {
     min-height: 100%;
     padding: 0;
 }
+a {
+    color: mediumvioletred;
+    text-decoration: underline;
+}
 
 .table thead th {
     text-align: center;
