@@ -10,7 +10,7 @@ NUM_BLOCKS = 4
 NUM_TIMESTEPS = 11
 IMAGES = {
     "snake": {
-        "src": "https://s7.orientaltrading.com/is/image/OrientalTrading/PDP_VIEWER_THUMB$&$NOWA/inflatable-snake~13675186",
+        "src": "/static/images/snake/thumbnail.jpg",
         "base_path": "static/images/snake/",
     },
     # "spider": {
