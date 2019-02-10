@@ -36,8 +36,8 @@
             }
             function setTime() {
                 --totalSeconds;
-                secondsLabel.innerHTML = pad(totalSeconds % 60) + "m";
-                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60)) + "s";
+                minutesLabel.innerHTML = pad(parseInt(totalSeconds / 60)) + "m";
+                secondsLabel.innerHTML = pad(totalSeconds % 60) + "s";
                 paceLabel.innerHTML = pace_per_second[excercise_seconds - totalSeconds] + "%";
                 imageContainer.src = paths[excercise_seconds - totalSeconds];
 
