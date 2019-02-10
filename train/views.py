@@ -17,6 +17,10 @@ IMAGES = {
         "src": "/static/images/spider/thumbnail.jpg",
         "base_path": "static/images/spider/",
     },
+    "clown": {
+        "src": "/static/images/clown/thumbnail.jpg",
+        "base_path": "static/images/clown/",
+    },
 }
 
 def startpage(request):
