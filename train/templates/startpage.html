@@ -8,7 +8,7 @@
             <h1 class="title">Get fit by using your fear!</h1>
             <p><a href="https://ki.se/forskning/fa-upp-pulsen-30-minuter-per-dag">Health professionals agree</a>, to live longer you NEED to <strong>raise your pulse 30 minutes per day</strong>! FitByFear is an app that helps you do this. With a lot less sweat than that spinning or bikram yoga class...</p>
 
-            <br>
+            <br><br>
             <h2 class="subtitle">Time to build your perfect training program!</h2>
 
             <form method="get" class="form-seconds">
@@ -33,24 +33,39 @@
 
             {% if seconds %}
                 <br>
-                <label class="label">Your pulse</label>
+                <label class="label">Design your exercise by setting your pulse</label>
                 <form method="post">
                     {% csrf_token %}
                     <div class="field">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th>Pulse</th>
+                                    <th></th>
                                     {% for i in timesteps %}
                                         {% widthratio i num_timesteps seconds as timestep %}
-                                        <th>{{ timestep|format_seconds }}</th>
+                                        {% if forloop.first %}
+                                            <th>Start</th>
+                                        {% elif forloop.last %}
+                                            <th>End</th>
+                                        {% else %}
+                                            <th>{{ timestep|format_seconds }}</th>
+                                        {% endif %}
                                     {% endfor %}
                                 </tr>
                             </thead>
                             <tbody>
                                 {% for j in blocks reversed %}
                                     <tr>
-                                        <th>{% widthratio j num_blocks 100 %}%</th>
+                                        {% widthratio j num_blocks 100 as pulse %}
+                                        <th>
+                                            {% if pulse == "33" %}
+                                                Warmup
+                                            {% elif pulse == "67" %}
+                                                Normal
+                                            {% else %}
+                                                Scary
+                                            {% endif %}
+                                        </th>
                                         {% for i in timesteps %}
                                             <td>
                                                 <input type="radio" class="radio"
@@ -62,14 +77,6 @@
                                         {% endfor %}
                                     </tr>
                                 {% endfor %}
-                                <tr>
-                                    <th>0%</th>
-                                    {% for i in timesteps %}
-                                        <td>
-                                            <input type="radio" disabled>
-                                        </td>
-                                    {% endfor %}
-                                </tr>
                             </tbody>
                         </table>
                     </div>
