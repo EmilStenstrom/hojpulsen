@@ -4,7 +4,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 from django.utils.crypto import get_random_string
 SECRET_KEY = os.environ.get("SECRET_KEY", get_random_string(50, "abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*(-_=+)"))
 DEBUG = (os.environ.get("DEBUG", "True") == "True")
-ALLOWED_HOSTS = ["localhost", "hojpulsen.sammanfatta.se"]
+ALLOWED_HOSTS = ["localhost", "fitbyfear.sammanfatta.se"]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
