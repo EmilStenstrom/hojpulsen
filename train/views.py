@@ -13,10 +13,10 @@ IMAGES = {
         "src": "/static/images/snake/thumbnail.jpg",
         "base_path": "static/images/snake/",
     },
-    # "spider": {
-    #     "src": "https://cdn.shopify.com/s/files/1/1787/3171/products/Remote-Control-11-4CH-Realistic-RC-Spider-Scary-Toy-Prank-Holiday-Gift-Model-Hot-Sale_e1ace6fe-16b1-475f-8548-f58a8587133a_small.jpg",
-    #     "base_path": "static/images/spider/",
-    # },
+    "spider": {
+        "src": "/static/images/spider/thumbnail.jpg",
+        "base_path": "static/images/spider/",
+    },
 }
 
 def startpage(request):
