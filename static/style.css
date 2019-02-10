@@ -7,7 +7,11 @@ html, body {
 }
 a {
     color: mediumvioletred;
-    text-decoration: underline;
+    text-decoration: underline;/
+}
+footer {
+    margin-top: 2em;
+    opacity: 0.5;
 }
 
 .table thead th {
