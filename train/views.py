@@ -1,7 +1,7 @@
 import os
 import math
 import random
-from urllib.parse import quote, urlencode
+from urllib.parse import urlencode
 
 from django.http import Http404
 from django.shortcuts import redirect, render
