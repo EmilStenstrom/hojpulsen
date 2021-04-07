@@ -4,13 +4,13 @@
 #
 #    pip-compile requirements-dev.in
 #
-asgiref==3.3.1
+asgiref==3.3.4
     # via django
 brotli==1.0.9
     # via whitenoise
 click==7.1.2
     # via pip-tools
-django==3.1.7
+django==3.2
     # via -r requirements.in
 flake8==3.9.0
     # via -r requirements-dev.in
