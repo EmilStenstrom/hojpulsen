@@ -10,7 +10,7 @@ brotli==1.0.9
     # via whitenoise
 click==7.1.2
     # via pip-tools
-django==3.2.1
+django==3.2.2
     # via -r requirements.in
 flake8==3.9.0
     # via -r requirements-dev.in
