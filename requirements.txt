@@ -8,7 +8,7 @@ asgiref==3.3.4
     # via django
 brotli==1.0.9
     # via whitenoise
-django==3.2.20
+django==3.2.23
     # via -r requirements.in
 pytz==2021.1
     # via django
