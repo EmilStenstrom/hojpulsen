@@ -7,3 +7,5 @@ __pycache__/
 
 ### Django ###
 .env
+.venv/
+staticfiles/

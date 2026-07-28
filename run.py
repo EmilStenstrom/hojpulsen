@@ -9,11 +9,11 @@ def run():
 
     command = command.replace("web: ", "")
     command = command.replace("waitress-serve", "waitress")
-    command = "export PORT=8000 && hupper -m " + command
+    command = "export DEBUG=True PORT=8000 && hupper -m " + command
     os.system(command)
 
 def deploy():
-    os.system("git push dokku master")
+    os.system("fly deploy")
 
 def dependencies():
     os.system("pip-compile --upgrade requirements.in")
